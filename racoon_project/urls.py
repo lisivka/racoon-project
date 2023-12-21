@@ -5,8 +5,10 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", view=views.index, name="home")
-]
+    path("", view=views.index, name="home"),
+
+    path('auth', include('apps.auth.urls')),
+    path('users', include('apps.users.urls')),]
 
 # Include URL patterns for API documentation
 urlpatterns += doc_urls
