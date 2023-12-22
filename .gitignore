@@ -236,5 +236,5 @@ pip-selfcheck.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python,pycharm,django,virtualenv
 db.sqlite3
-/migrations/*
-!/migrations/__init__.py
+**/migrations/*
+!**/migrations/__init__.py

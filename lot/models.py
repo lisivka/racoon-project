@@ -1,9 +1,17 @@
+from enum import StrEnum, auto
+
 from django.contrib.auth import get_user_model
 from django.db import models
 
 from apps.users.models import UserModel as User
 
 UserModel: User = get_user_model()
+
+
+class StateEnum(StrEnum):
+    Draft = auto()
+    Active = auto()
+    Closed = auto()
 
 
 class VehicleModel(models.Model):
@@ -117,8 +125,7 @@ class LotModel(models.Model):
     owner = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='lots')
     vehicle = models.ForeignKey(VehicleModel, on_delete=models.PROTECT,
                                 related_name='lots')
-    color = models.ForeignKey(ColorModel, on_delete=models.PROTECT,
-                              related_name='lots')
+    color = models.ForeignKey(ColorModel, on_delete=models.PROTECT, related_name='lots')
     engine = models.ForeignKey(EngineModel, on_delete=models.PROTECT,
                                related_name='lots')
     fuel = models.ForeignKey(FuelModel, on_delete=models.PROTECT,
@@ -128,7 +135,9 @@ class LotModel(models.Model):
     condition = models.ForeignKey(ConditionModel, on_delete=models.PROTECT,
                                   related_name='lots')
 
-    state = models.CharField(max_length=128, default='draft')  # draft / active / closed
+    state = models.CharField(max_length=10,
+                             choices=[(status.value, status) for status in StateEnum],
+                             default=StateEnum.Draft.value)  # draft / active / closed
     name = models.CharField(max_length=128, blank=True)
     comment = models.TextField(blank=True)
     year = models.IntegerField(default=2022)  # Kick default after
