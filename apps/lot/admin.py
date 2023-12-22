@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from lot.models import VehicleModel, ColorModel, EngineModel, FuelModel, ConditionModel, \
+from .models import VehicleModel, ColorModel, EngineModel, FuelModel, ConditionModel, \
     BrandModel, ModelModel, LotModel, PhotoModel
 
 admin.site.register(VehicleModel)

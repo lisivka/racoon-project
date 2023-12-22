@@ -4,7 +4,7 @@ from .yasg import urlpatterns as doc_urls
 from . import views
 
 urlpatterns = [
-    path('admin', admin.site.urls),
+    path('admin/', admin.site.urls),
     path("", view=views.index, name="home"),
 
     path('auth', include('apps.auth.urls')),

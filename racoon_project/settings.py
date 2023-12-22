@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.auth',
     'apps.auction',
-    'lot'
+    'apps.lot'
 ]
 
 MIDDLEWARE = [
