@@ -1,10 +1,19 @@
--- insert data into user table
+-- insert data into user table for SQLite
 INSERT INTO auth_user(is_superuser, email, password, is_active, is_staff, created_at, updated_at)
 VALUES
-    (0, 'bobjohnson@gmail.co', '123456', 1, 0, "22 груд. 2023 р., 10:58:08", "22 груд. 2023 р., 10:58:08"),
-    (0, 'alexfox@gmail.co', 'alex123', 1, 0, "22 груд. 2023 р., 10:58:08", "22 груд. 2023 р., 10:58:08"),
-    (0, 'andrbot@gmail.co', 'qwerty0001', 1, 0, "22 груд. 2023 р., 10:58:08", "22 груд. 2023 р., 10:58:08"),
-    (0, 'genryford@gmail.co', 'ford1980', 1, 0, "22 груд. 2023 р., 10:58:08", "22 груд. 2023 р., 10:58:08");
+    (FALSE, 'objohnson@gmail.co', '123456', TRUE, FALSE, '2023-12-23 12:30:26.729465', '2023-12-23 12:30:26.729465'),
+    (FALSE, 'lexfox@gmail.co', 'alex123', TRUE, FALSE, '2023-12-23 12:30:26.729465', '2023-12-23 12:30:26.729465'),
+    (FALSE, 'ndrbot@gmail.co', 'qwerty0001', TRUE, FALSE, '2023-12-23 12:30:26.729465', '2023-12-23 12:30:26.729465'),
+    (FALSE, 'enryford@gmail.co', 'ford1980', TRUE, FALSE, '2023-12-23 12:30:26.729465', '2023-12-23 12:30:26.729465');
+
+---- insert data into user table for PostgreSQL
+--INSERT INTO auth_user (is_superuser, email, password, is_active, is_staff, created_at, updated_at)
+--VALUES
+--    (true, 'e22yford@gmail.co', md5('123'), true, true, NOW(), NOW()),
+--    (true, '2ryord@gmail.co',  pgp_sym_encrypt('123', 'key'), true, true, NOW(), NOW()),
+--    (true, 'a2eox@gmail.co', crypt('123', gen_salt('bf')), true, true, NOW(), NOW()) ,
+--    (false, 'genryford@gmail.co', crypt('ford1980', gen_salt('bf')), true, false, NOW(), NOW());
+
 
 -- insert data into profile table
 INSERT INTO profile(name, surname, age, user_id)
@@ -166,5 +175,5 @@ VALUES
     ('https://cs.copart.com/v1/AUTH_svc.pdoc00001/lpp/1223/98619b3025ad4f829c98554a870d3a61_thb.jpg', 21),
     ('https://cs.copart.com/v1/AUTH_svc.pdoc00001/lpp/1223/98619b3025ad4f829c98554a870d3a61_thb.jpg', 22),
     ('https://cs.copart.com/v1/AUTH_svc.pdoc00001/lpp/1223/98619b3025ad4f829c98554a870d3a61_thb.jpg', 23),
-    ('https://cs.copart.com/v1/AUTH_svc.pdoc00001/lpp/1223/98619b3025ad4f829c98554a870d3a61_thb.jpg', 24),
-    ('https://cs.copart.com/v1/AUTH_svc.pdoc00001/lpp/1223/98619b3025ad4f829c98554a870d3a61_thb.jpg', 25);
+    ('https://cs.copart.com/v1/AUTH_svc.pdoc00001/lpp/1223/98619b3025ad4f829c98554a870d3a61_thb.jpg', 24);
+--    ('https://cs.copart.com/v1/AUTH_svc.pdoc00001/lpp/1223/98619b3025ad4f829c98554a870d3a61_thb.jpg', 25);
