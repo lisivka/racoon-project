@@ -8,7 +8,9 @@ urlpatterns = [
     path("", view=views.index, name="home"),
 
     path('auth', include('apps.auth.urls')),
-    path('users', include('apps.users.urls')),]
+    path('users', include('apps.users.urls')),
+    path('auctions', include('apps.auction.urls')),
+]
 
 # Include URL patterns for API documentation
 urlpatterns += doc_urls
