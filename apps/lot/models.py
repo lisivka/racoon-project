@@ -122,6 +122,7 @@ class LotModel(models.Model):
     class Meta:
         db_table = 'lot'
 
+    is_active = models.BooleanField(default=False)
     owner = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='lots')
     vehicle = models.ForeignKey(VehicleModel, on_delete=models.PROTECT,
                                 related_name='lots')
