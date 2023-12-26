@@ -10,6 +10,7 @@ urlpatterns = [
     path('auth', include('apps.auth.urls')),
     path('users', include('apps.users.urls')),
     path('auctions', include('apps.auction.urls')),
+    path('lots', include('apps.lot.urls')),
 ]
 
 # Include URL patterns for API documentation

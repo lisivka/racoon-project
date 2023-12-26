@@ -238,3 +238,4 @@ pip-selfcheck.json
 
 **/migrations/
 /.env_AWS
+/db.sqlite3
