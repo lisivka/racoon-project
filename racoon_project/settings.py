@@ -25,7 +25,6 @@ AUTH_USER_MODEL = 'users.UserModel'
 # Application definition
 
 INSTALLED_APPS = [
-    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +40,7 @@ INSTALLED_APPS = [
     'apps.auth',
     'apps.auction',
     'apps.lot',
-    'bid',
+    'apps.bid',
 ]
 
 MIDDLEWARE = [
@@ -74,7 +73,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'racoon_project.wsgi.application'
-ASGI_APPLICATION = 'racoon_project.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -88,21 +86,6 @@ DATABASES = {
         'HOST': os.environ.get('DATABASE_HOST', None),
         'PORT': os.environ.get('DATABASE_PORT', None),
     }
-}
-
-REDIS_HOST = os.environ.get('REDIS_HOST')
-REDIS_PORT = os.environ.get('REDIS_PORT')
-REDIS_DB = os.environ.get('REDIS_DB')
-REDIS_PASSWORD = os.environ.get('REDIS_PASSWORD')
-
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            'hosts': [f'redis://default:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}'],
-            'symmetric_encryption_keys': [SECRET_KEY],
-        },
-    },
 }
 
 # Password validation

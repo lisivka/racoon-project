@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 from common.models import TimeStampedModel
 from .schemas import BidSchema
+from ..auction.models import AuctionsModel
 
 User = get_user_model()
 
@@ -18,8 +19,7 @@ class Bid(TimeStampedModel):
         related_name='bid_user'
     )
     auction = models.ForeignKey(
-        # TODO: add import Auction
-        # Auction,
+        AuctionsModel,
         verbose_name=_('auction'),
         on_delete=models.SET_NULL,
         null=True,
@@ -30,8 +30,3 @@ class Bid(TimeStampedModel):
     class Meta:
         verbose_name = _('bid')
         verbose_name_plural = _('bids')
-
-    def save(self, *args, **kwargs):
-        BidSchema.model_validate(self.__dict__)
-
-        super().save(*args, **kwargs)
