@@ -2,10 +2,20 @@ from enum import StrEnum, auto
 
 from django.contrib.auth import get_user_model
 from django.db import models
-
+from django.core.exceptions import ValidationError
 from apps.users.models import UserModel as User
 
 UserModel: User = get_user_model()
+
+
+def min_year_validator(year):
+    if year < 1950:
+        raise ValidationError("%(year) is less than 1950", params={"year": year})
+
+
+def max_year_validator(year):
+    if year > 2100:
+        raise ValidationError("%(year) is greater than 2100", params={"year": year})
 
 
 class StateEnum(StrEnum):
@@ -141,7 +151,7 @@ class LotModel(models.Model):
                              default=StateEnum.Draft.value)  # draft / active / closed
     name = models.CharField(max_length=128, blank=True)
     comment = models.TextField(blank=True)
-    year = models.IntegerField(default=2022)  # Kick default after
+    year = models.IntegerField(default=2022, validators=[min_year_validator, max_year_validator])  # Kick default after
     odometer = models.IntegerField(default=220000)  # Kick default after
 
 
