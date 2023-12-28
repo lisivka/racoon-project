@@ -11,6 +11,7 @@ class UserAdmin(admin.ModelAdmin):
     list_display_links =  ['id','email']
     list_editable = ['is_active', 'is_staff']
     search_fields = ['email', 'is_active', 'is_staff', 'is_superuser']
+    list_filter = ['is_active', 'is_staff', 'is_superuser']
 
 
 @admin.register(ProfileModel)
