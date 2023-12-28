@@ -3,30 +3,43 @@
 {% block content %}
 
 <div class="container mx-16 my-2">
-  <div class="card" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="{{ lot.photo }}" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{ lot.name }}</h5>
-        <p class="card-text"><strong>Model: </strong>{{ lot.model }}</p>
-        <p class="card-text"><strong>Vehicle: </strong>{{ lot.vehicle }}</p>
-        <p class="card-text"><strong>Color: </strong>{{ lot.color }}</p>
-        <p class="card-text"><strong>Engine: </strong>{{ lot.engine }}</p>
-        <p class="card-text"><strong>Fuel: </strong>{{ lot.fuel }}</p>
-        <p><strong>Comments:</strong></p>
-        <p class="card-text"><small class="text-body-secondary">{{ lot.comment }}</small></p>
-      </div>
-      <div class="card-footer">
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <a href="#" class="btn btn-primary">Update</a>
-          <a href="#" class="btn btn-danger">Delete</a>
+    <div class="card" style="max-width: 540px;">
+        <div class="row g-0">
+            <!--    -----------------PHOTOS-----------------  -->
+            <div class="col-md-4">
+                {% if photos %}
+                {% for photo in photos %}
+                <img src="{{ photo.url }}" class="img-fluid rounded-start"
+                     alt="...">
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ lot.name }}</h5>
+                    <p class="card-text"><strong>Model: </strong>
+                        {{ lot.model                 }}</p>
+                    <p class="card-text"><strong>Vehicle: </strong>
+                        {{                        lot.vehicle }}</p>
+                    <p class="card-text"><strong>Color: </strong>
+                        {{ lot.color                        }}</p>
+                    <p class="card-text"><strong>Engine: </strong>
+                        {{ lot.engine                        }}</p>
+                    <p class="card-text"><strong>Fuel: </strong>{{ lot.fuel }}
+                    </p>
+                    <p><strong>Comments:</strong></p>
+                    <p class="card-text"><small class="text-body-secondary">
+                        {{                        lot.comment }}</small></p>
+                </div>
+                <div class="card-footer">
+                    <div class="btn-group" role="group"
+                         aria-label="Basic example">
+                        <a href="#" class="btn btn-primary">Update</a>
+                        <a href="#" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
 </div>
 {% endblock %}
