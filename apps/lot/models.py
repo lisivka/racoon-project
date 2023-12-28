@@ -123,21 +123,36 @@ class LotModel(models.Model):
         db_table = 'lot'
 
     is_active = models.BooleanField(default=False)
-    owner = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='lots')
-    vehicle = models.ForeignKey(VehicleModel, on_delete=models.PROTECT,
-                                related_name='lots')
-    color = models.ForeignKey(ColorModel, on_delete=models.PROTECT, related_name='lots')
-    engine = models.ForeignKey(EngineModel, on_delete=models.PROTECT,
-                               related_name='lots')
-    fuel = models.ForeignKey(FuelModel, on_delete=models.PROTECT,
-                             related_name='lots')
-    model = models.ForeignKey(ModelModel, on_delete=models.PROTECT,
+    owner = models.ForeignKey(UserModel,
+                              on_delete=models.CASCADE,
                               related_name='lots')
-    condition = models.ForeignKey(ConditionModel, on_delete=models.PROTECT,
+    vehicle = models.ForeignKey(VehicleModel,
+                                on_delete=models.SET_NULL,
+                                null=True, blank=True, default=None,
+                                related_name='lots')
+    color = models.ForeignKey(ColorModel,
+                              on_delete=models.SET_NULL,
+                              null=True, blank=True, default=None,
+                              related_name='lots')
+    engine = models.ForeignKey(EngineModel,
+                               on_delete=models.SET_NULL,
+                               null=True, blank=True, default=None,
+                               related_name='lots')
+    fuel = models.ForeignKey(FuelModel,
+                             on_delete=models.SET_NULL,
+                             null=True, blank=True, default=None,
+                             related_name='lots')
+    model = models.ForeignKey(ModelModel,
+                              on_delete=models.SET_NULL,
+                              null=True, blank=True, default=None,
+                              related_name='lots')
+    condition = models.ForeignKey(ConditionModel,
+                                  on_delete=models.SET_NULL,
+                                  null=True, blank=True, default=None,
                                   related_name='lots')
-
     state = models.CharField(max_length=10,
-                             choices=[(status.value, status) for status in StateEnum],
+                             choices=[(status.value, status) for status in
+                                      StateEnum],
                              default=StateEnum.Draft.value)  # draft / active / closed
     name = models.CharField(max_length=128, blank=True)
     comment = models.TextField(blank=True)
@@ -153,5 +168,6 @@ class PhotoModel(models.Model):
     class Meta:
         db_table = 'photo'
 
-    lot = models.ForeignKey(LotModel, on_delete=models.CASCADE, related_name='photos')
+    lot = models.ForeignKey(LotModel, on_delete=models.CASCADE,
+                            related_name='photos')
     url = models.URLField()

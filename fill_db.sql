@@ -1,10 +1,10 @@
 -- insert data into user table for SQLite
 INSERT INTO auth_user(is_superuser, email, password, is_active, is_staff, created_at, updated_at)
 VALUES
-    (FALSE, 'objohnson@gmail.co', '123456', TRUE, FALSE, '2023-12-23 12:30:26.729465', '2023-12-23 12:30:26.729465'),
-    (FALSE, 'lexfox@gmail.co', 'alex123', TRUE, FALSE, '2023-12-23 12:30:26.729465', '2023-12-23 12:30:26.729465'),
-    (FALSE, 'ndrbot@gmail.co', 'qwerty0001', TRUE, FALSE, '2023-12-23 12:30:26.729465', '2023-12-23 12:30:26.729465'),
-    (FALSE, 'enryford@gmail.co', 'ford1980', TRUE, FALSE, '2023-12-23 12:30:26.729465', '2023-12-23 12:30:26.729465');
+    (FALSE, 'objohnson@gmail.co', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', TRUE, FALSE, '2023-12-23 12:30:26.729465', '2023-12-23 12:30:26.729465'),
+    (FALSE, 'lexfox@gmail.co', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', TRUE, FALSE, '2023-12-23 12:30:26.729465', '2023-12-23 12:30:26.729465'),
+    (FALSE, 'ndrbot@gmail.co', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', TRUE, FALSE, '2023-12-23 12:30:26.729465', '2023-12-23 12:30:26.729465'),
+    (FALSE, 'enryford@gmail.co', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', TRUE, FALSE, '2023-12-23 12:30:26.729465', '2023-12-23 12:30:26.729465');
 
 ---- insert data into user table for PostgreSQL
 --INSERT INTO auth_user (is_superuser, email, password, is_active, is_staff, created_at, updated_at)
@@ -12,6 +12,8 @@ VALUES
 --    (true, 'e22yford@gmail.co', md5('123'), true, true, NOW(), NOW()),
 --    (true, '2ryord@gmail.co',  pgp_sym_encrypt('123', 'key'), true, true, NOW(), NOW()),
 --    (true, 'a2eox@gmail.co', crypt('123', gen_salt('bf')), true, true, NOW(), NOW()) ,
+----    (true, 'a2ox@gmail.co',  SHA2('ford1980', 256), true, true, NOW(), NOW
+----()) , ----FOR MYSQL
 --    (false, 'genryford@gmail.co', crypt('ford1980', gen_salt('bf')), true, false, NOW(), NOW());
 
 
@@ -177,4 +179,16 @@ VALUES
     ('https://cs.copart.com/v1/AUTH_svc.pdoc00001/lpp/1223/98619b3025ad4f829c98554a870d3a61_thb.jpg', 22),
     ('https://cs.copart.com/v1/AUTH_svc.pdoc00001/lpp/1223/98619b3025ad4f829c98554a870d3a61_thb.jpg', 23),
     ('https://cs.copart.com/v1/AUTH_svc.pdoc00001/lpp/1223/98619b3025ad4f829c98554a870d3a61_thb.jpg', 24);
---    ('https://cs.copart.com/v1/AUTH_svc.pdoc00001/lpp/1223/98619b3025ad4f829c98554a870d3a61_thb.jpg', 25);
+
+INSERT INTO auctions_table(is_active,start_date,end_date,lot_id)
+VALUES
+(True, 2023-12-28,	2023-12-28,	24),
+(True, 2023-12-28,	2023-12-28,	1);
+
+
+INSERT INTO bid_bid(created_at,	updated_at,	bet,	auction_id,	user_id)
+VALUES
+(	'2023-12-28 11:02:34.669280',	'2023-12-28 11:02:34.669280',	50,	1,	1),
+(	'2023-12-28 11:15:30.015325',	'2023-12-28 11:15:30.015325',	60,	1,	2),
+(	'2023-12-28 11:15:45.974092',	'2023-12-28 11:15:45.974092',	70,	1,	3),
+(	'2023-12-28 11:16:09.043886',	'2023-12-28 11:16:09.043886',	90,	1,	1);

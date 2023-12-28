@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from .models import UserModel, ProfileModel
 
 
@@ -8,9 +7,9 @@ class UserAdmin(admin.ModelAdmin):
     """Admin configuration for the UserModel."""
 
     list_display = ['id','email', 'is_active', 'is_staff', 'is_superuser']
-    list_display_links =  ['id','email']
-    list_editable = ['is_active', 'is_staff']
+    list_display_links =  ['id','email', 'is_active', 'is_superuser']
     search_fields = ['email', 'is_active', 'is_staff', 'is_superuser']
+    list_filter = [ 'is_staff', 'is_superuser']
 
 
 @admin.register(ProfileModel)
