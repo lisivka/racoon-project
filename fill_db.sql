@@ -177,4 +177,16 @@ VALUES
     ('https://cs.copart.com/v1/AUTH_svc.pdoc00001/lpp/1223/98619b3025ad4f829c98554a870d3a61_thb.jpg', 22),
     ('https://cs.copart.com/v1/AUTH_svc.pdoc00001/lpp/1223/98619b3025ad4f829c98554a870d3a61_thb.jpg', 23),
     ('https://cs.copart.com/v1/AUTH_svc.pdoc00001/lpp/1223/98619b3025ad4f829c98554a870d3a61_thb.jpg', 24);
---    ('https://cs.copart.com/v1/AUTH_svc.pdoc00001/lpp/1223/98619b3025ad4f829c98554a870d3a61_thb.jpg', 25);
+
+INSERT INTO auctions_table(is_active,start_date,end_date,lot_id)
+VALUES
+(True, 2023-12-28,	2023-12-28,	24),
+(True, 2023-12-28,	2023-12-28,	1);
+
+
+INSERT INTO bid_bid(created_at,	updated_at,	bet,	auction_id,	user_id)
+VALUES
+(	'2023-12-28 11:02:34.669280',	'2023-12-28 11:02:34.669280',	50,	1,	1),
+(	'2023-12-28 11:15:30.015325',	'2023-12-28 11:15:30.015325',	60,	1,	2),
+(	'2023-12-28 11:15:45.974092',	'2023-12-28 11:15:45.974092',	70,	1,	3),
+(	'2023-12-28 11:16:09.043886',	'2023-12-28 11:16:09.043886',	90,	1,	1);
