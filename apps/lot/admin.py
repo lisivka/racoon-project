@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from .models import VehicleModel, ColorModel, EngineModel, FuelModel, ConditionModel
 from .models import BrandModel, ModelModel, LotModel, PhotoModel
+from apps.auction.models import AuctionsModel
 
 @admin.action(description="Mark selected as NOT active")
 def make_not_active(modeladmin, request, queryset):
@@ -22,25 +23,24 @@ admin.site.register(BrandModel)
 admin.site.register(ModelModel)
 # admin.site.register(PhotoModel)
 
+class PhotoInline(admin.StackedInline):
+    model = PhotoModel
+    extra = 0
+
+class AuctionInline(admin.StackedInline):
+    model = AuctionsModel
+    extra = 0
+
 @admin.register(LotModel)
 class LotAdmin(admin.ModelAdmin):
     """Admin configuration for the LotModel."""
-
+    inlines = [AuctionInline, PhotoInline,  ]
     verbose_name_plural = "Lots"
     list_display = ('id', 'owner', 'vehicle', 'is_active', 'fuel', 'condition', 'state', 'color')
     list_display_links = ('id', 'owner', 'vehicle')
     list_editable = ('is_active',)
     search_fields = ('owner', 'vehicle', 'is_active' )
     list_filter = ('is_active','fuel', 'condition', 'state', 'color', 'vehicle')
-
-    # @admin.action(description="Mark selected as NOT active")
-    # def make_not_active(modeladmin, request, queryset):
-    #     queryset.update(is_active=False)
-    #
-    # @admin.action(description="Mark selected as active")
-    # def make_active(modeladmin, request, queryset):
-    #     queryset.update(is_active=True)
-
     actions = [make_not_active,
                make_active,
                ]
