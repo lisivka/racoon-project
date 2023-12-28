@@ -16,7 +16,7 @@
     </tr>
     </thead>
     <tbody>
-    {% for lot in lots %}
+    {% for lot in lot_list %}
     <tr>
         <th scope="row"><a href="lots/{{ lot.id }}">{{ lot.id }}</a></th>
         <td>{{ lot.is_active }}</td>
