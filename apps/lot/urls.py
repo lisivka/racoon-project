@@ -1,7 +1,10 @@
 from django.urls import path
-from . import views
+from .views import LotListsView, LotView
 
 urlpatterns = [
-    path("", view=views.lot_list, name="lot_list"),
-    path("/<int:pk>", view=views.lot_details, name="lot_details"),
+    path("", view=LotListsView.as_view(), name="lot_list"),
+    path("", view=LotListsView.as_view(), name="lot_create"),
+    path("/<int:pk>", view=LotView.as_view(), name="lot_delete"),
+    path("/<int:pk>", view=LotView.as_view(), name="lot_update"),
+    path("/<int:pk>", view=LotView.as_view(), name="lot_details"),
 ]
