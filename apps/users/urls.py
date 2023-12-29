@@ -8,5 +8,4 @@ from .views import (
 urlpatterns = [
     path('', UserListView.as_view(), name='user-list'),
     path('/profile', UserProfileUpdateView.as_view(), name='users_profile_update'),
-
 ]

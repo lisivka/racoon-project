@@ -1,13 +1,14 @@
-from .models import LotModel, ColorModel, EngineModel, FuelModel, ConditionModel
+from .models import Lot
+
 
 class LotServices:
 
     def get_all(self):
-        return LotModel.objects.all()
+        return Lot.objects.all()
 
     def get_by_id(self, pk):
-        return LotModel.objects.get(id=pk)
+        return Lot.objects.get(id=pk)
 
     def get_active(self):
-        return LotModel.objects.filter(is_active=True)
+        return Lot.objects.filter(is_active=True)
 

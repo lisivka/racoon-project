@@ -1,16 +1,22 @@
-from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
-from apps.lot.models import LotModel
+from apps.lot.models import Lot
+from common.enums import AuctionStatus
+from common.models import TimeStamped
 
-UserModel = get_user_model()
 
-
-class AuctionsModel(models.Model):
-    class Meta:
-        db_table = 'auctions_table'
-
-    lot = models.ForeignKey(LotModel, on_delete=models.CASCADE, related_name='auctions')
-    is_active = models.BooleanField(default=False)
+class Auction(TimeStamped):
+    lot = models.ForeignKey(Lot, on_delete=models.SET_NULL, null=True, related_name='auction')
     start_date = models.DateField()
     end_date = models.DateField()
+    status = models.CharField(
+        _('status'),
+        choices=[(status.name, status.value) for status in AuctionStatus],
+        default=AuctionStatus.PENDING.value,
+    )
+
+    class Meta:
+        db_table = 'auction'
+        verbose_name = _('auction')
+        verbose_name_plural = _('auctions')

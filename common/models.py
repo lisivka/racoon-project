@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class TimeStampedModel(models.Model):
+class TimeStamped(models.Model):
     """
     An abstract base model that adds created_at and updated_at fields to other models.
     """

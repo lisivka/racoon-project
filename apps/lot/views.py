@@ -1,8 +1,8 @@
-from django.template import loader
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http.response import HttpResponse
+from django.shortcuts import render
+
+from .models import Photo
 from .services import LotServices
-from .models import LotModel, PhotoModel
+
 
 def get_offset_limit_page(page):
     page_prev = page - 1
@@ -13,6 +13,7 @@ def get_offset_limit_page(page):
     LIMIT = 20
     OFFSET = page * LIMIT - LIMIT
     return OFFSET, LIMIT, page, page_prev, page_next
+
 
 def lot_list(request, page=1):
     context = {}
@@ -30,7 +31,7 @@ def lot_list(request, page=1):
 def lot_details(request, pk):
 
     lot = LotServices().get_by_id(pk)
-    photos = PhotoModel.objects.all().filter(lot=lot)
+    photos = Photo.objects.all().filter(lot=lot)
     context = {}
     context["title"] = "Lot Details"
     context["lot"] = lot

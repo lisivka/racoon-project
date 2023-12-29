@@ -1,11 +1,9 @@
-from django.contrib.auth import get_user_model
 from rest_framework.serializers import ModelSerializer
-from .models import AuctionsModel
 
-UserModel = get_user_model()
+from .models import Auction
 
 
 class AuctionsSerializers(ModelSerializer):
     class Meta:
-        model = AuctionsModel
+        model = Auction
         fields = '__all__'

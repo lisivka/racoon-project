@@ -1,0 +1,32 @@
+{% load i18n %}
+
+{% block subject %}
+{% blocktrans %}Account activation on {{ frontend_site_name }}{% endblocktrans %}
+{% endblock subject %}
+
+{% block text_body %}
+{% blocktrans %}You're receiving this email because you need to finish activation process on {{ frontend_site_name }}.{% endblocktrans %}
+
+{% blocktrans %}Attention! If you have not tried to create an account on the site {{ frontend_site_name }}, you do not need to follow the link.{% endblocktrans %}
+
+{% trans "Please go to the following page to activate account:" %}
+{{ protocol }}://{{ frontend_site_name }}/{{ url|safe }}
+
+{% trans "Thanks for using our site!" %}
+
+{% blocktrans %}The {{ frontend_site_name }} team{% endblocktrans %}
+{% endblock text_body %}
+
+{% block html_body %}
+<p>{% blocktrans %}You're receiving this email because you need to finish activation process on {{ frontend_site_name }}.{% endblocktrans %}</p>
+
+{% blocktrans %}Attention! If you have not tried to create an account on the site {{ frontend_site_name }}, you do not need to follow the link.{% endblocktrans %}
+
+<p>{% trans "Please go to the following page to activate account:" %}</p>
+<p><a href="{{ protocol }}://{{ frontend_site_name }}/{{ url|safe }}">{{ protocol }}://{{ frontend_site_name }}/{{ url|safe }}</a></p>
+
+<p>{% trans "Thanks for using our site!" %}</p>
+
+<p>{% blocktrans %}The {{ frontend_site_name }} team{% endblocktrans %}</p>
+
+{% endblock html_body %}

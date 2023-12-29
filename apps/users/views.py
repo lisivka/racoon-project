@@ -1,14 +1,12 @@
 from django.contrib.auth import get_user_model
-
 from rest_framework.generics import ListAPIView, UpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 
-from apps.users.models import ProfileModel
-from apps.users.models import UserModel as User
+from apps.users.models import Profile
 
 from .serializers import ProfileSerializer, UserSerializer
 
-UserModel: User = get_user_model()
+User = get_user_model()
 
 
 class UserListView(ListAPIView):
@@ -16,13 +14,13 @@ class UserListView(ListAPIView):
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        queryset = UserModel.objects.exclude(pk=self.request.user.pk)
+        queryset = User.objects.exclude(pk=self.request.user.pk)
         return queryset
 
 
 class UserProfileUpdateView(UpdateAPIView):
     serializer_class = ProfileSerializer
-    queryset = ProfileModel.objects.all()
+    queryset = Profile.objects.all()
     permission_classes = (IsAuthenticated,)
 
     def get_object(self):

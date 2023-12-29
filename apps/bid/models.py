@@ -2,15 +2,14 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from common.models import TimeStamped
 
-from common.models import TimeStampedModel
-from .schemas import BidSchema
-from ..auction.models import AuctionsModel
+from ..auction.models import Auction
 
 User = get_user_model()
 
 
-class Bid(TimeStampedModel):
+class Bid(TimeStamped):
     user = models.ForeignKey(
         User,
         verbose_name=_('user'),
@@ -19,7 +18,7 @@ class Bid(TimeStampedModel):
         related_name='bid_user'
     )
     auction = models.ForeignKey(
-        AuctionsModel,
+        Auction,
         verbose_name=_('auction'),
         on_delete=models.SET_NULL,
         null=True,
