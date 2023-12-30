@@ -239,4 +239,4 @@ pip-selfcheck.json
 # End of https://www.toptal.com/developers/gitignore/api/python,pycharm,django,virtualenv
 
 /.env_AWS
-/db.sqlite3
+#/db.sqlite3

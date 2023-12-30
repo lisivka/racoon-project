@@ -1,4 +1,3 @@
-from .djoser_conf import *
-from .email_conf import *
-from .jwt_conf import *
-from .rest_conf import *
+from .djoser_conf import *  # noqa: F403
+from .email_conf import *  # noqa: F403
+from .rest_conf import *  # noqa: F403
