@@ -21,3 +21,12 @@ class Auction(TimeStamped):
         db_table = 'auction'
         verbose_name = _('auction')
         verbose_name_plural = _('auctions')
+
+    def get_all(self):
+        return Auction.objects.all()
+
+    def get_limit(self, offset, limit):
+        return Auction.objects.all()[offset:offset + limit]
+
+    def get_by_id(self, pk):
+        return Auction.objects.get(id=pk)

@@ -29,3 +29,6 @@ class Bid(TimeStamped):
     class Meta:
         verbose_name = _('bid')
         verbose_name_plural = _('bids')
+
+    def get_by_auction(self, pk):
+        return Bid.objects.filter(auction_id=pk).order_by('-bet', 'created_at')
