@@ -14,6 +14,7 @@ class Auction(TimeStamped):
         _('status'),
         choices=[(status.name, status.value) for status in AuctionStatus],
         default=AuctionStatus.PENDING.value,
+        max_length=20
     )
 
     class Meta:

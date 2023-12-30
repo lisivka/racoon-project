@@ -134,6 +134,7 @@ class Lot(TimeStamped):
         _('status'),
         choices=[(status.name, status.value) for status in LotStatus],
         default=LotStatus.DRAFT.value,
+        max_length=20
     )
     name = models.CharField(max_length=128, blank=True)
     description = models.TextField(blank=True)
