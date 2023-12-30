@@ -1,7 +1,26 @@
 from django.shortcuts import render
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.viewsets import ModelViewSet
 
-from .models import Photo
+from .models import Color, Lot, Photo, Vehicle
+from .serializers import ColorSerializers, LotSerializers, VehicleSerializers
 from .services import LotServices
+
+
+class LotViewSet(ModelViewSet):
+    serializer_class = LotSerializers
+    permission_classes = (IsAuthenticated,)
+    queryset = Lot.objects.all()
+
+class ColorViewSet(ModelViewSet):
+    serializer_class = ColorSerializers
+    permission_classes = (IsAuthenticated,)
+    queryset = Color.objects.all()
+
+class VehicleViewSet(ModelViewSet):
+    serializer_class = VehicleSerializers
+    permission_classes = (IsAuthenticated,)
+    queryset = Vehicle.objects.all()
 
 
 def get_offset_limit_page(page):
