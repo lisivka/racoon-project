@@ -13,6 +13,12 @@ class ProfileSerializer(ModelSerializer):
         model = Profile
         fields = ('name', 'surname', 'phone', 'avatar')
 
+    @staticmethod
+    def validate_avatar(value):
+        if value and value.size > (USER_AVATAR_MAX_SIZE_MB * 1024 * 1024):
+            raise ValidationError(f'Maximum image size allowed is {USER_AVATAR_MAX_SIZE_MB} Mb')
+        return value
+
 
 class UserSerializer(ModelSerializer):
     password = CharField(write_only=True, required=False)
@@ -51,8 +57,15 @@ class UserSerializer(ModelSerializer):
         return user
 
     def update(self, instance, validated_data):
-        if self.context['request'].data.profile.get('avatar') == '':
-            validated_data['profile']['avatar'] = None
+        profile_data = validated_data.pop('profile', {})
+
+        if self.context['request'].data.get('profile.avatar') == '':
+            instance.profile.avatar = None
+            instance.save()
+
+        profile_serializer = ProfileSerializer(instance.profile, data=profile_data, partial=True)
+        profile_serializer.is_valid(raise_exception=True)
+        profile_serializer.save()
 
         return super().update(instance, validated_data)
 
@@ -67,12 +80,6 @@ class UserSerializer(ModelSerializer):
             data['profile']['avatar'] = DEFAULT_USER_AVATAR_URL
 
         return data
-
-    @staticmethod
-    def validate_avatar(value):
-        if value and value.size > (USER_AVATAR_MAX_SIZE_MB * 1024 * 1024):
-            raise ValidationError(f'Maximum image size allowed is {USER_AVATAR_MAX_SIZE_MB} Mb')
-        return value
 
     @staticmethod
     def validate_email(value):

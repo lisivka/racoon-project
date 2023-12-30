@@ -7,7 +7,7 @@ DJOSER = {
     },
     'PERMISSIONS': {
         'user': ['rest_framework.permissions.AllowAny'],
-        'user_list': ['rest_framework.permissions.AllowAny'],
+        'user_list': ['rest_framework.permissions.IsAuthenticated'],
         'user_create': ['rest_framework.permissions.AllowAny'],
     },
     'TOKEN_MODEL': None,

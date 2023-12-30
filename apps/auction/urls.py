@@ -6,6 +6,6 @@ from .views import (
 
 urlpatterns = [
     path('', AuctionsView.as_view(), name='auction-list'),
-    path('/<int:pk>', AuctionsView.as_view(), name='auction-detail'),
+    path('<int:pk>/', AuctionsView.as_view(), name='auction-detail'),
 
 ]

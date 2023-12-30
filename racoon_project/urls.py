@@ -13,9 +13,9 @@ urlpatterns = [
 
     path('', view=views.index, name='home'),
 
-    path('api/v1/users', include('apps.users.urls')),
-    path('api/v1/auctions', include('apps.auction.urls')),
-    path('api/v1/lots', include('apps.lot.urls')),
+    path('api/v1/users/', include('apps.users.urls')),
+    path('api/v1/auctions/', include('apps.auction.urls')),
+    path('api/v1/lots/', include('apps.lot.urls')),
     path('api/v1/auctions/', include('apps.bid.urls')),
 ]
 
