@@ -11,7 +11,7 @@ class ProfileSchema(BaseModel):
 
 
 class UserSchema(BaseModel):
-    email: EmailStr
+    email: str
     profile: ProfileSchema
 
 

@@ -30,11 +30,11 @@
         {% endif %}
         <td>{{ auction.last_bid }}</td>
         <td>{{ auction.id }}</td>
-        <td><a href="/auctions/{{ auction.id }}">{{ auction.start_date }}</a></td>
-        <td><a href="/auctions/{{ auction.id }}">{{ auction.end_date }}</a></td>
-        <td><a href="/auctions/{{ auction.id }}">{{ auction.status }}</a></td>
+        <td><a href="/auctions/{{ auction.id }}/">{{ auction.start_date }}</a></td>
+        <td><a href="/auctions/{{ auction.id }}/">{{ auction.end_date }}</a></td>
+        <td><a href="/auctions/{{ auction.id }}/">{{ auction.status }}</a></td>
         <th>{{ auction.lot.id }}</th>
-        <td><a href="/lots/{{auction.lot.id}}">{{ auction.lot.name }}</a></td>
+        <td><a href="/lots/{{auction.lot.id}}/">{{ auction.lot.name }}</a></td>
         <td>{{ auction.lot.owner }}</td>
         <td>{{ auction.lot.condition }}</td>
         <td>{{ auction.lot.year }}</td>
