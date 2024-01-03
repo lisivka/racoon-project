@@ -34,6 +34,7 @@ services:
       - db_postgres
   db_postgres:
     image: "postgres:15-alpine"
+    container_name: ${DATABASE_HOST}
     env_file:
       - .env
     networks:
