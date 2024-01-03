@@ -27,6 +27,7 @@ class Bid(TimeStamped):
     bet = models.BigIntegerField(_('bet'))
 
     class Meta:
+        db_table = 'bid'
         verbose_name = _('bid')
         verbose_name_plural = _('bids')
 

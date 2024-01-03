@@ -32,8 +32,7 @@ class JWTAuthenticator:
 
     @staticmethod
     def get_payload(jwt_token):
-        payload = jwt_decode(
-            jwt_token, settings.SECRET_KEY, algorithms=["HS256"])
+        payload = jwt_decode(jwt_token, settings.SECRET_KEY, algorithms=["HS256"])
         return payload
 
     @staticmethod

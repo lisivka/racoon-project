@@ -5,14 +5,12 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
 from apps.auction.views import AuctionViewSet
-from apps.bid.views import BidViewSet
 from apps.lot.views import ColorViewSet, LotViewSet, VehicleViewSet
 
 from . import views
 from .yasg import urlpatterns as doc_urls
 
 router = DefaultRouter()
-router.register(r'bids', BidViewSet, basename="bids")
 router.register(r'auctions', AuctionViewSet, basename="auctions")
 router.register(r'lots', LotViewSet, basename="lots")
 router.register(r'colors', ColorViewSet, basename="colors")
@@ -33,7 +31,8 @@ urlpatterns = [
 
     # for API
     path('api/v1/', include(router.urls)),
-
+    path('api/v1/users/', include('apps.users.urls')),
+    path('api/v1/auctions/', include('apps.bid.urls')),
 ]
 
 # Serve media files in development
