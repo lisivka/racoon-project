@@ -144,6 +144,16 @@ class Lot(TimeStamped):
     class Meta:
         db_table = 'lot'
 
+    def __str__(self):
+        return self.name
+
+    def get_all(self):
+        return Lot.objects.all()
+
+    def get_by_id(self, pk):
+        return Lot.objects.get(id=pk)
+
+
 
 class Photo(models.Model):
     """

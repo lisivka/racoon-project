@@ -4,8 +4,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from .models import Color, Lot, Photo, Vehicle
 from .serializers import ColorSerializers, LotSerializers, VehicleSerializers
-from .services import LotServices
-
+from common.views import get_offset_limit_page
 
 class LotViewSet(ModelViewSet):
     serializer_class = LotSerializers
@@ -23,22 +22,13 @@ class VehicleViewSet(ModelViewSet):
     queryset = Vehicle.objects.all()
 
 
-def get_offset_limit_page(page):
-    page_prev = page - 1
-    page_next = page + 1
-    if page <= 1:
-        page = 1
-        page_prev = 1
-    LIMIT = 20
-    OFFSET = page * LIMIT - LIMIT
-    return OFFSET, LIMIT, page, page_prev, page_next
 
 
 def lot_list(request, page=1):
     context = {}
     context["title"] = "Lots"
     offset, limit, page, page_prev, page_next = get_offset_limit_page(page)
-    lots = LotServices().get_all()
+    lots = Lot().get_all()
     context["lots"] = lots[offset:offset + limit]
     context["page"] = page
     context["page_next"] = page_next
@@ -49,7 +39,7 @@ def lot_list(request, page=1):
 
 def lot_details(request, pk):
 
-    lot = LotServices().get_by_id(pk)
+    lot = Lot().get_by_id(pk)
     photos = Photo.objects.all().filter(lot=lot)
     context = {}
     context["title"] = "Lot Details"

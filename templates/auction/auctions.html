@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<b>List of {{title}}</b>
+<table class="table table-striped table-hover">
+    <caption>List of {{title}}</caption>
+    <thead class="table-dark">
+    <tr>
+        <th scope="col">Photo</th>
+        <th scope="col">Bid</th>
+        <th scope="col">id</th>
+        <th scope="col">Start</th>
+        <th scope="col">End</th>
+        <th scope="col">Satus</th>
+        <th scope="col">id.lot</th>
+        <th scope="col">Name</th>
+        <th scope="col">Owner</th>
+        <th scope="col">Condition</th>
+        <th scope="col">Year</th>
+        <th scope="col">Color</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for auction in auctions %}
+    <tr>
+        {% if auction.photo_url %}
+        <td><img src="{{ auction.photo_url }}" alt="Auction Photo"  height="100"></td>
+        {% else %}
+        <td><p>No photo available</p></td>
+        {% endif %}
+        <td>{{ auction.last_bid }}</td>
+        <td>{{ auction.id }}</td>
+        <td><a href="/auctions/{{ auction.id }}">{{ auction.start_date }}</a></td>
+        <td><a href="/auctions/{{ auction.id }}">{{ auction.end_date }}</a></td>
+        <td><a href="/auctions/{{ auction.id }}">{{ auction.status }}</a></td>
+        <th>{{ auction.lot.id }}</th>
+        <td><a href="/lots/{{auction.lot.id}}">{{ auction.lot.name }}</a></td>
+        <td>{{ auction.lot.owner }}</td>
+        <td>{{ auction.lot.condition }}</td>
+        <td>{{ auction.lot.year }}</td>
+        <td>{{ auction.lot.color }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<p>
+    <a class="btn btn-sm btn-secondary"
+       href="{% url 'auction_list' page=page_prev %}"
+       role="button">PREV {{page_prev }}</a>
+    Page {{ page }}
+    <a class="btn btn-sm btn-secondary"
+       href="{% url 'auction_list' page=page_next %}"
+       role="button">NEXT {{page_next}} </a>
+</p>
+
+{% endblock %}
