@@ -24,9 +24,9 @@ urlpatterns = [
 
     path('', view=views.index, name='home'),
 
-    path('users', include('apps.users.urls')),
-    path('auctions', include('apps.auction.urls')),
-    path('lots', include('apps.lot.urls')),
+    path('users/', include('apps.users.urls')),
+    path('auctions/', include('apps.auction.urls')),
+    path('lots/', include('apps.lot.urls')),
     path('auctions/', include('apps.bid.urls')),
 
     # for API
