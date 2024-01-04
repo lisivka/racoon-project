@@ -18,9 +18,9 @@
     <tbody>
     {% for lot in lots %}
     <tr>
-        <th scope="row"><a href="lots/{{ lot.id }}">{{ lot.id }}</a></th>
+        <th scope="row"><a href="/lots/{{ lot.id }}/">{{ lot.id }}</a></th>
         <td>{{ lot.is_active }}</td>
-        <td><a href="lots/{{lot.id}}">{{ lot.name }}</a></td>
+        <td><a href="/lots/{{lot.id}}/">{{ lot.name }}</a></td>
         <td>{{ lot.owner }}</td>
         <td>{{ lot.condition }}</td>
         <td>{{ lot.year }}</td>
