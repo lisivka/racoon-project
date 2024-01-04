@@ -247,3 +247,6 @@ postgres_data
 cache
 info.log
 __pycache__
+postgres_data/
+cache/
+

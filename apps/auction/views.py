@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.viewsets import ModelViewSet
 
 from apps.auction.models import Auction
@@ -27,6 +27,13 @@ class AuctionViewSet(ModelViewSet):
     queryset = Auction().get_all()
     serializer_class = AuctionsSerializer
 
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            # Дозволити всім користувачам перегляду (GET)
+            return [AllowAny()]
+
+        # Дозволити тільки аутентифікованим користувачам інші методи (POST, PUT, DELETE, тощо)
+        return [IsAuthenticated()]
 
 def auction_list(request, page=1):
     context = {}

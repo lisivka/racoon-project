@@ -84,7 +84,7 @@ Installation and running the project:
 
 1) Clone the repository
 
-       https://github.com/MaksymKashuba/Racoon-Project.git
+       https://github.com/lisivka/racoon-Project.git
 2) Create a virtual environment
 
        cd Racoon-Project
@@ -124,6 +124,11 @@ Installation and running the project:
 
 
 
+test data:
+
+    python manage.py dumpdata > data.json
+
+    python manage.py loaddata data.json
 
 License:
 
