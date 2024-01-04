@@ -5,16 +5,27 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
 from apps.auction.views import AuctionViewSet
-from apps.lot.views import ColorViewSet, LotViewSet, VehicleViewSet
+from apps.bid.views import BidViewSet
+from apps.lot.views import (ColorViewSet, LotViewSet, VehicleViewSet,
+                            EngineViewSet, FuelViewSet, ConditionViewSet,
+                            BrandViewSet, ModelViewSet, PhotoViewSet)
 
 from . import views
 from .yasg import urlpatterns as doc_urls
 
 router = DefaultRouter()
 router.register(r'auctions', AuctionViewSet, basename="auctions")
+router.register(r'bids', BidViewSet, basename="bids")
 router.register(r'lots', LotViewSet, basename="lots")
 router.register(r'colors', ColorViewSet, basename="colors")
 router.register(r'vehicles', VehicleViewSet, basename="vehicles")
+router.register(r'engines', EngineViewSet, basename="engines")
+router.register(r'fuels', FuelViewSet, basename="fuels")
+router.register(r'conditions', ConditionViewSet, basename="conditions")
+router.register(r'brands', BrandViewSet, basename="brands")
+router.register(r'models', ModelViewSet, basename="models")
+router.register(r'photos', PhotoViewSet, basename="photos")
+
 
 
 urlpatterns = [

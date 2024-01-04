@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 from apps.auction.models import Auction
-from apps.auction.serializers import AuctionsSerializers
+from apps.auction.serializers import AuctionsSerializer
 from common.views import get_offset_limit_page
 from apps.lot.models import Photo
 from apps.bid.models import Bid
@@ -12,7 +12,7 @@ from apps.bid.models import Bid
 
 
 class AuctionsView(ListCreateAPIView, RetrieveUpdateDestroyAPIView):
-    serializer_class = AuctionsSerializers
+    serializer_class = AuctionsSerializer
     permission_classes = (IsAuthenticated,)
     queryset = Auction.objects.all()
 
@@ -25,7 +25,7 @@ class AuctionsView(ListCreateAPIView, RetrieveUpdateDestroyAPIView):
 
 class AuctionViewSet(ModelViewSet):
     queryset = Auction().get_all()
-    serializer_class = AuctionsSerializers
+    serializer_class = AuctionsSerializer
 
 
 def auction_list(request, page=1):
