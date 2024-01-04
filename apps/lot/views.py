@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.viewsets import ModelViewSet
 
 from .models import Lot, Color, Vehicle, Engine, Fuel, Condition, Model, Brand, Photo
@@ -11,8 +11,15 @@ from common.views import get_offset_limit_page
 
 class LotViewSet(ModelViewSet):
     serializer_class = LotSerializer
-    permission_classes = (IsAuthenticated,)
     queryset = Lot.objects.all()
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            # Дозволити всім користувачам перегляду (GET)
+            return [AllowAny()]
+
+        # Дозволити тільки аутентифікованим користувачам інші методи (POST, PUT, DELETE, тощо)
+        return [IsAuthenticated()]
 
 
 class ColorViewSet(ModelViewSet):
