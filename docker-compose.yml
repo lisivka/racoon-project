@@ -1,0 +1,56 @@
+version: '3.7'
+services:
+  backend:
+    container_name: racoon_backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    networks:
+      - racoon
+    depends_on:
+      - db_postgres
+      - redis
+    volumes:
+      - .:/drf_app
+    restart: on-failure
+  redis:
+    image: "redis:7-alpine"
+    container_name: db_redis
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"
+    command: redis-server
+    volumes:
+      - ./cache:/data
+    restart: on-failure
+    networks:
+      - racoon
+    env_file:
+      - .env
+    depends_on:
+      - db_postgres
+  db_postgres:
+    image: "postgres:15-alpine"
+    container_name: ${DATABASE_HOST}
+    env_file:
+      - .env
+    networks:
+      - racoon
+    ports:
+      - "${DATABASE_PORT}:${DATABASE_PORT}"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data/
+    restart: on-failure
+    environment:
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+volumes:
+  postgres_data:
+  cache:
+networks:
+  racoon:
+    name: racoon
