@@ -5,11 +5,14 @@ from .models import Profile
 
 User = get_user_model()
 
+class ProfileInline(admin.StackedInline):
+    model = Profile
+    extra = 0
 
 @admin.register(User)
 class CustomUserAdmin(admin.ModelAdmin):
     """Admin configuration for the User model."""
-
+    inlines = (ProfileInline,)
     list_display = ('id', 'email', 'is_active', 'is_staff', 'is_superuser')
     list_display_links = ('id', 'email', 'is_active', 'is_superuser')
     search_fields = ('email', 'is_active', 'is_staff', 'is_superuser')
