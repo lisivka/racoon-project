@@ -241,3 +241,5 @@ pip-selfcheck.json
 
 /.env_AWS
 #/db.sqlite3
+postgres_data/
+cache/
