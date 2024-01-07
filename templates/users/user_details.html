@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ name }} {{ surname}}
+{% endblock %}
+
+{% block content %}
+
+{% if user.role == 1 %}
+{% include  'layout/button_new.html' %}
+{% endif %}
+
+<div class="container">
+    <div id="logo" class="jumbotron">
+
+        Email: {{ user.email }}<br>
+        Active: {{ user.is_active }}<br>
+
+        Name: {{ first_name }}<br>
+        Surname: {{ last_name }}<br>
+        {% if avatar %}
+        Avatar: <img src="/media/{{ avatar }}" width="100" height="100"><br>
+        {% else %}
+        Avatar: <img src="/media/default/images/users/avatar.png" width="100" height="100"><br>
+        {% endif %}
+        <br>
+        <br>Lots:
+        {% if lots %}
+        <table class="table table-hover table-bordered  table-striped">
+            <tr>
+                <td>id</td>
+                <td>Lots</td>
+                <td>Lots creation</td>
+            </tr>
+            {% for lot in lots %}
+            <tr>
+                <td>{{ lot.id }}</td>
+                <td><a href="{% url 'lot_details' lot.id %}"> {{ lot.name }}</a></td>
+                <td>{{ lot.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {%else%}
+        No lots.
+        {% endif %}
+
+        <!--        <a class="btn btn-sm btn-primary" href="/delete/{{ id }}/">Delete User</a>-->
+        <br><br>
+     {#   <a class="btn btn-sm btn-primary" href="{% url 'update_user' user_id=id%}">Update User</a> #}
+    {# <a class="btn btn-danger btn-sm" href="{% url 'delete_user'  user_id=id%}">Delete User</a> #}
+
+        <br>
+        {% if request.user.id == id %}
+        <br>
+        {# <a class="link" href="{% url 'reset_password' %}">Create new password</a> #}
+        <br>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

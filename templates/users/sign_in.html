@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="mx-auto mt-15" style="width: 350px;">
+    <form method="post" @submit.prevent="submitUserLoginForm">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <p style={{ color_x }}>{{ title }}</p>
+        <h3>User: {{ user}} </h3>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" v-model="formData.email" class="form-control" required>
+        <span v-if="errors.detail" class="login-error">{{ errors.detail }}</span>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" v-model="formData.password" class="form-control" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-5 w-100">Login</button>
+    </form>
+
+    <p class="mt-4">
+      <a href="{% url 'password_reset' %}">Forgot your password?</a>
+    </p>
+    <p>
+        <a href="{% url 'sign_up' %}">Don't have an account?</a>
+
+    </p>
+    {{ errors }}
+    {{ formData }}
+
+  </div>
+{% endblock %}
