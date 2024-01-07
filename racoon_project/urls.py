@@ -9,6 +9,7 @@ from apps.bid.views import BidViewSet
 from apps.lot.views import (ColorViewSet, LotViewSet, VehicleViewSet,
                             EngineViewSet, FuelViewSet, ConditionViewSet,
                             BrandViewSet, ModelViewSet, PhotoViewSet)
+from apps.users.views import UserListView, UserViewSet
 
 from . import views
 from .yasg import urlpatterns as doc_urls
@@ -25,6 +26,8 @@ router.register(r'conditions', ConditionViewSet, basename="conditions")
 router.register(r'brands', BrandViewSet, basename="brands")
 router.register(r'models', ModelViewSet, basename="models")
 router.register(r'photos', PhotoViewSet, basename="photos")
+router.register(r'users', UserViewSet, basename="users")
+
 
 
 
@@ -42,7 +45,7 @@ urlpatterns = [
 
     # for API
     path('api/v1/', include(router.urls)),
-    path('api/v1/users/', include('apps.users.urls')),
+    # path('api/v1/users/', include('apps.users.urls')),
     path('api/v1/auctions/', include('apps.bid.urls')),
 ]
 
