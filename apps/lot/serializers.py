@@ -38,12 +38,13 @@ class ConditionSerializer(serializers.ModelSerializer):
 
 
 class BrandSerializer(serializers.ModelSerializer):
+    models = serializers.StringRelatedField(many=True, read_only=True)
     class Meta:
         model = Brand
         fields = '__all__'
 
 class ModelSerializer(serializers.ModelSerializer):
-    # brand = BrandSerializer()
+    brande = BrandSerializer()
     class Meta:
         model = Model
         fields = '__all__'
@@ -53,15 +54,15 @@ class PhotoSerializer(serializers.ModelSerializer):
         model = Photo
         fields = '__all__'
 
-class LotSerializer(ModelSerializer):
+class LotSerializer(serializers.ModelSerializer):
     # color = serializers.StringRelatedField()
-    color = ColorSerializer()
-    owner = UserSerializer()
-    vehicle = VehicleSerializers()
-    engine = EngineSerializer()
-    fuel = FuelSerializer()
-    model = ModelSerializer()
-    condition = ConditionSerializer()
+    color = ColorSerializer(read_only=True)
+    owner = UserSerializer(read_only=True)
+    vehicle = VehicleSerializers(read_only=True)
+    engine = EngineSerializer(read_only=True)
+    fuel = FuelSerializer(read_only=True)
+    model = ModelSerializer(read_only=True)
+    condition = ConditionSerializer(read_only=True)
     photos = PhotoSerializer(many=True, read_only=True)
 
     class Meta:
