@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ title }}
+{% endblock title %}
+{% block content %}
+<!--<div class="mx-auto mt-15" style="width: 750px;">-->
+<div class="container" style="width: 550px;">
+    <div id="logo" class="jumbotron">
+        <br>
+        <h3>{{ title }}</h3>
+        <br>
+        {# {% include 'layout/messages.html' %} #}
+        <div class="container">
+            <form class="form-horizontal" method="POST">
+                {% csrf_token %}
+                {% for f in form%}
+                    <p><label class="control-label col-sm-2" for="{{f.id_for_label}}">{{ f.label }}:</label>{{f}} </p>
+                    <div class="form-error">{{f.errors}}</div>
+                {% endfor %}
+
+                {% for f in form2%}
+                    <p><label class="control-label col-sm-2" for="{{f.id_for_label}}">{{ f.label }}:</label>{{f}} </p>
+                    <div class="form-error">{{f.errors}}</div>
+                {% endfor %}
+                <p> Input phone number in format: +380XXXXXXXXX</p>
+                <input type='submit' class="btn btn-sm btn-success" value='Submit'/>
+            </form>
+        </div>
+    </div>
+</div>
+<!--    </div>-->
+
+{% endblock %}
