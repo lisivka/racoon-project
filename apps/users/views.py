@@ -17,11 +17,12 @@ from apps.auction.models import Auction
 User = get_user_model()
 
 
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
-    # class UserViewSet(viewsets.ModelViewSet):
+# class UserViewSet(viewsets.ReadOnlyModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (IsAuthenticated,)
+
 
 
 class UserProfileUpdateView(UpdateAPIView):
